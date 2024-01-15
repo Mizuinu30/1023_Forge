@@ -1,5 +1,5 @@
 ///Backend connection for chatbot to OpenAI API GPT-3.5-Turbo model
-//Fuctionality: Open a constant conversation in the terminal between user and AI Dungeon Master until closed by user.
+//Fuctionality: Open a constant conversation in the terminal between user and AI Dungeon Master until exited by user.
 //Input: User input
 //Output: AI Dungeon Master response
 //Author: 1023_Forge (Hector J. Vazquez)
@@ -22,39 +22,56 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// Set up chat function that allows for user input in terminal
-const chat = async (messages=[]) => {
-    rl.question('What do you want to say to the Dungeon Master? (type "exit" to quit) ', async (message) => {
+// Setup chatbot conversation by providing a player name and an array of messages
+const askQuestion = (playerName, question, messages) => {
+// Ask user for input
+    rl.question(question, async (message) => {
+// Exit if user types "exit"
       if (message.toLowerCase() === 'exit') {
         rl.close();
         return;
       }
 
-      // Add the user's message to the conversation history
+// Add user message to messages array
       messages.push({
         role: "user",
         content: message
       });
 
-      // Generate the AI Dungeon Master's response
+//wait for response from OpenAI
+      await chat(playerName, messages);
+    });
+  }
+
+// Chat with OpenAI
+  const chat = async (playerName, messages=[]) => {
+// If there are no messages, print initial input
+// Otherwise, continue conversation with player name and messages
+    const question = messages.length === 0 ?
+      `\nWhat do you want to say to the Dungeon Master, ${playerName}? (type "exit" to quit)\n >` :
+      `\n${playerName}, your turn: `;
+
+// If there are messages, send them to OpenAI to get a response
+    if (messages.length > 0) {
       const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',  // Change 'engine' to 'model'
-        messages: messages,  // Pass the entire conversation history
+        model: 'gpt-3.5-turbo',
+        messages: messages,
       });
 
-      // Print the AI Dungeon Master's response
+// Print response from OpenAI
       const assistantMessage = response['choices'][0]['message']['content'];
       console.log(`\nDungeon Master: ${assistantMessage}`);
 
-      // Add the AI Dungeon Master's response to the conversation history
+// Add response to messages array
       messages.push({
         role: "assistant",
         content: assistantMessage
       });
+    }
 
-      // Continue the conversation
-      chat(messages);
-    });
+// Ask user for input
+    askQuestion(playerName, question, messages);
   };
 
-  chat();//Start chat function
+// Start chatbot conversation
+  chat("Player");
