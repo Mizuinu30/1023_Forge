@@ -69,7 +69,7 @@ const askQuestion = (playerName, question, messages) => {
       });
     }
 
-// Ask user for input
+
     askQuestion(playerName, question, messages);
   };
 
