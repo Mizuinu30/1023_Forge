@@ -1,3 +1,13 @@
+#!/usr/bin/env node
+// Import necessary modules
+
+
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
+
 const mysql = require('mysql');
 
 // Database connection configuration
