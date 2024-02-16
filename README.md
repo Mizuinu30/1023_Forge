@@ -1,4 +1,4 @@
-![1023Forge](../1023_Forge/javascript/scripts/images/1023Forge.jpg)
+![1023Forge](./javascript/scripts/images/1023Forge.jpg)
 
 Demo Day Product for Holberton Coding School.
 
