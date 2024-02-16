@@ -49,7 +49,8 @@ Demo Day Product for Holberton Coding School.
 Hector J. Vazquez: Passionate software developer dedicated to creating technology as a tool for creating inclusivity and accessibility for marginalized communities. Committed to utilizing innovative solutions to break down barriers and empower individuals through technology.
 [Email](jjvazquez96@gmail.com) | [Linkedin](https://www.linkedin.com/in/h%C3%A9ctor-v%C3%A1zquez-4b2a34170/) | [GitHub](https://github.com/Pepesaur96)
 
-Walter Carrion [Email](wjrcarrion@gmail.com) | [Linkedin](https://www.linkedin.com/in/walter-carrion-3a4b29296/) | [GitHub](https://github.com/Scopecr)
+Walter Carrion: As a software developer I am committed to pushing the boundaries of innovation, striving to develop solutions that transcend conventional limitations and dismantle barriers. My goal is to empower individuals through the thoughtful integration of technology, ensuring that it becomes a force for positive change and equal opportunity. By leveraging my skills and expertise, I aspire to contribute to a more inclusive digital landscape, where everyone, regardless of their background, can benefit from the transformative potential of technology.
+[Email](wjrcarrion@gmail.com) | [Linkedin](https://www.linkedin.com/in/walter-carrion-3a4b29296/) | [GitHub](https://github.com/Scopecr)
 
 Juan Silva: Delivering innovative solutions and driving technical excellence in C, Python, JavaScript, SQL, and R. Holberton Coding School graduate with expertise in enhancing web app performance using AWS. Certifications in Computer Science and Google Data Analytics. Committed to lifelong learning and innovating sustainable, impactful solutions.
 [Email](juansilva.dvm@gmail.com) | [Linkedin](https://www.linkedin.com/in/juan-silva-rubio/) | [GitHub](https://github.com/Mizuinu30)
