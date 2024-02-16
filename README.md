@@ -42,7 +42,7 @@ Demo Day Product for Holberton Coding School.
 
 ## Example Use:
 
-![Example Storytime](../1023_Forge/javascript/scripts/images/openaistorytime.png)
+![Post](./javascript/scripts/images/openaistorytime.png)
 
 ## Creators:
 
