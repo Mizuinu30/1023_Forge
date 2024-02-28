@@ -33,13 +33,10 @@ DEMO DAY PRODUCT FOR HOLBERTON CODING SCHOOL
 4. **Session Logging and Notes:**
    - DMs can log session details, take notes, and track the progression of their campaigns. This feature ensures that important decisions, NPC interactions, and player actions are documented for future reference.
 
-5. **Interactive Maps:**
-   - Integration with mapping services allows DMs to create and share interactive maps, enhancing the visualization of game environments.
-
-6. **API Integration with ChatGPT:**
+5. **API Integration with ChatGPT:**
    - A unique feature involves integrating with ChatGPT, enabling DMs to engage in dynamic and immersive conversations with AI-driven characters or to seek inspiration for in-game scenarios.
 
-7. **AWS Cloud Hosting:**
+6. **AWS Cloud Hosting:**
    - The use of AWS ensures scalability, reliability, and security for the application, allowing DMs to focus on crafting epic adventures without worrying about infrastructure concerns.
 
 1023 Forge is a comprehensive tool that empowers DMs to create memorable and engaging D&D campaigns. Through a combination of cutting-edge technologies and thoughtful features, the platform elevates the art of storytelling in the world of tabletop role-playing games.
