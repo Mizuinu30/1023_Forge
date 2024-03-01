@@ -8,6 +8,12 @@ DEMO DAY PRODUCT FOR HOLBERTON CODING SCHOOL
 
 *Assembling a team of skilled adventurers, Alistair sought out the expertise of the Paladin, Sir Galahad, known throughout the land for his unwavering dedication and impeccable integrity. Entrusted with the role of Database Manager, Sir Galahad vowed to safeguard the repository of knowledge that would underpin their creation. Alongside him, the rogue known as Rook, a master of stealth and cunning, assumed the mantle of Software Security Manager. With his sharp wit and strategic mind, Rook ensured that their creation would be impervious to the threats of the digital realm. Rounding out the party was the bard, Melody, whose melodious voice and nimble fingers made her the perfect Full Stack Developer. With her versatile skills and boundless creativity, Melody breathed life into their project with every line of code*.
 
+*Together, the intrepid team ventured forth into the depths of development, their journey akin to traversing a treacherous dungeon fraught with challenges and obstacles. They delved into the intricacies of NodeJS, JavaScript, MySQL, AWS, and OpenAI, each member contributing their unique talents to the creation of their magnum opus. With each passing trial, they grew stronger, their bonds forged in the fires of collaboration and camaraderie*.
+
+*At the climax of their quest, the team encountered a magic mirror deep within the dungeon, its reflective surface shimmering with enchantment. As they gazed into its depths, the mirror presented them with visions of their own fears and doubts, threatening to undermine their resolve. Yet, drawing upon their collective strength and unwavering determination, they overcame the illusions, emerging victorious and united. In that moment, they realized that their greatest challenge was not the obstacles they faced, but the doubts that lurked within themselves*.
+
+*With newfound clarity and resolve, they pressed onward, their hearts filled with hope and their minds set on the realization of their shared dream. And so, with the combined efforts of Alistair, Sir Galahad, Rook and Melody, they unveiled their creation to the world: a magical crystal ball that could visualize the imagination of every Dungeon Master, illuminating the path to countless adventures yet to be told*.
+
 </div>
 
 ## Description:
