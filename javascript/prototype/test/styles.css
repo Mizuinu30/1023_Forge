@@ -1,0 +1,238 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Font face for 8-bit style text - you can use a service like FontSquirrel to generate the necessary @font-face rules for a pixelated font */
+@font-face {
+  font-family: "Pixel";
+  src: url("fonts/pixel-font.woff2") format("woff2"),
+    url("fonts/pixel-font.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply the 8-bit font and set common styles */
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Pixel", "Courier", monospace;
+  font-size: 16px; /* Adjust size to ensure it looks pixelated */
+  color: #ffffff; /* Default text color - white */
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header */
+header {
+  background-color: #332c50; /* Dark purple background */
+  color: #ffffff; /* White text */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  border-bottom: 4px solid #6465a5; /* Lighter purple for border */
+}
+
+/* Layout */
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.border-b {
+  border-bottom: 1px solid #6465a5; /* Lighter purple for border */
+}
+
+/* Sidebar */
+aside {
+  background-color: #2e263300; /* Removed opacity */
+  color: #ffffff;
+  padding: 1rem;
+  width: 20%;
+}
+
+/* Main content */
+main {
+  background-color: #2e2633a4; /* Slightly lighter purple for main content */
+  color: #ffffff;
+  padding: 1rem;
+  width: 60%;
+  overflow-y: auto;
+}
+
+/* Buttons and interactive elements */
+button {
+  background-color: #6465a5; /* Lighter purple for buttons */
+  color: #ffffff;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #514c7f;
+}
+
+/* Sample class for list items in the sidebar and main content */
+.list-item {
+  background-color: #332c50; /* Dark purple background for list items */
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background-color: #433d61; /* Slightly lighter purple on hover */
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2e2633;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #433d61;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #514c7f;
+}
+
+/* Background image */
+body {
+  background-image: url("highfantasy.webp");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #050118ff; /* Slightly lighter purple for main content */
+}
+
+body,
+html {
+  margin: 0;
+  overflow-x: hidden;
+  height: 100%;
+  display: flex; /* New: Flex layout for the body */
+  justify-content: center; /* Centers the main content horizontally */
+}
+
+/* Style for toggle buttons */
+.toggle-button {
+  position: fixed;
+  z-index: 100; /* Higher than the sidebar z-index to ensure they're clickable */
+  bottom: 20px; /* Adjust as needed */
+  cursor: pointer;
+}
+
+#toggleCharacterData {
+  left: 10px;
+}
+#toggleCampaignData {
+  right: 10px;
+}
+
+/* Initial sidebar styles, hidden off-screen */
+.sidebar {
+  background: #333; /* Example color */
+  color: white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 250px; /* Width of the sidebar */
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+/* Class added by JavaScript to slide in the sidebar */
+.active {
+  transform: translateX(0);
+}
+
+main {
+  flex: 0 1 800px; /* New: Flex item, where 800px is the basis of the main content width */
+  transition: transform 0.3s ease;
+  padding: 10px;
+  /* Optional: Add a box-shadow or border to highlight the main content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1; /* Ensures main content is above the fixed-position sidebars */
+}
+
+/* Adjust main content margins when sidebars are active */
+.active-main-left {
+  margin-left: 250px;
+}
+.active-main-right {
+  margin-right: 250px;
+}
+
+/* Navigation bar styles */
+.navbar {
+  background-color: #332c50; /* Dark purple, for example, from the color palette */
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-item {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #6465a5; /* Lighter purple, for example */
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-item:hover,
+.navbar-item:focus {
+  background-color: #514c7f; /* Darken the button background on hover/focus */
+}
+
+/* Ensures the navigation bar sticks to the top */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
