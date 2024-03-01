@@ -10,19 +10,13 @@ const keywords = {
   'write': 'fantasy author',
   'create': '5E format',
   'story': 'storyteller',
-  'npc': ''
+  'npc': 'character sheet'
 };
 
 // Setup chatbot conversation by providing a player name and an array of messages
 function askQuestionWithKeywords(playerName, question, messages) {
   // Ask user for input
   readline.question(question, async (message) => {
-    // Exit if user types "exit"
-    if (message.toLowerCase() === 'exit') {
-      readline.close();
-      return;
-    }
-
     // Check for keywords in user input and modify role accordingly
     let role = 'user';
     for (let keyword in keywords) {
@@ -36,11 +30,5 @@ function askQuestionWithKeywords(playerName, question, messages) {
       role: role,
       content: message
     });
-
-    // Wait for response from OpenAI
-    await chat(playerName, messages);
   });
 }
-
-// Start chatbot conversation
-chat("Player");
