@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Campaign Manager</title>
+    <link rel="stylesheet" href="campaignmanagerstyles.css">
+</head>
+<body class="bg-black text-white">
+
+        <header class="flex justify-between items-center py-4 border-b">
+            <h1 id="campaignName" class="text-xl">Campaign Name</h1>
+            <div id="userSection" class="flex items-center">
+                <span id="userName">User Name</span>
+                <button id="homeButton" class="ml-4">Home</button>
+                <button id="loginButton" class="ml-4">Login</button>
+        </header>
+    </div>
+    <div id="characterData" class="sidebarleft">
+        <!-- Character data goes here -->
+    </div>
+
+    <div class="main">
+        <div id="chatLog"></div>
+        <input id="userInput" type="text" placeholder="Type your message here">
+        <button id="sendButton">Send</button>
+    </div>
+
+    <div id="campaignInfo" class="sidebarright">
+        <!-- Campaign info goes here -->
+    </div>
+
+    <script src="campaignmanagerscript.js"></script>
+</body>
+</html>
