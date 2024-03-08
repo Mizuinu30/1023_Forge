@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const characterDataElement = document.getElementById('characterData');
   const campaignInfoElement = document.getElementById('campaignInfo');
   const chatLogElement = document.getElementById('chatLog');
+  const sendButton = document.getElementById('sendButton');
+  const userInput = document.getElementById('userInput');
 
   // Placeholder data for demonstration
   const npcs = ["Alistair the Wise", "Melody the Swift", "Sir Galahad the Stalwart", "Rook the Shadow"];
@@ -37,49 +39,52 @@ document.addEventListener('DOMContentLoaded', () => {
   chatLogElement.textContent = 'Welcome to the D&D Campaign Manager. Select a campaign to start!';
 });
 
-document.getElementById('toggleCharacterDataButton').addEventListener('click', function() {
-  var section = document.getElementById('characterData');
-  if (section.style.display === 'none') {
-      section.style.display = 'block';
-  } else {
-      section.style.display = 'none';
-  }
-});
+document.getElementById('sendButton').addEventListener('click', async function() {
+  console.log('Send button clicked');
+  var userInputField = document.getElementById('userInput');
+  var userInput = userInputField.value;
 
-document.getElementById('toggleCampaignInfoButton').addEventListener('click', function() {
-  var section = document.getElementById('campaignInfo');
-  if (section.style.display === 'none') {
-      section.style.display = 'block';
-  } else {
-      section.style.display = 'none';
-  }
-});
+  // clear the user input field
+  userInputField.value = '';
 
-document.getElementById('sendButton').addEventListener('click', function() {
-  var userInput = document.getElementById('userInput').value;
+  console.log('User input:', userInput);
   var chatLog = document.getElementById('chatLog');
 
   // Display user input
-  chatLog.innerHTML += '<p>User: ' + userInput + '</p>';
+  chatLog.innerHTML += '<p><strong>User:</strong> ' + userInput + '</p>';
 
-  // Send user input to OpenAI and get response
-  fetch('https://api.openai.com/v4/engines/davinci-codex/completions', {
+  // Call the function to send the message to the server and display the AI response
+  console.log('Before sendMessageToServer');
+  await sendMessageToServer(userInput);
+  console.log('After sendMessageToServer');
+});
+
+async function sendMessageToServer(userInput) {
+  console.log('sendMessageToServer called with:', userInput);
+  try {
+    console.log('About to send fetch request');
+    const response = await fetch('http://127.0.0.1:3000/message', {
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
-      },
-      body: JSON.stringify({
-          prompt: userInput,
-          max_tokens: 60
-      })
-  })
-  .then(response => response.json())
-  .then(data => {
-      // Display OpenAI response
-      chatLog.innerHTML += '<p>AI: ' + data.choices[0].text + '</p>';
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ message: userInput }),
   });
 
-  // Clear user input
-  document.getElementById('userInput').value = '';
-});
+  console.log('Fetch request completed');
+
+  if (!response.ok) {
+    console.error('Fetch request failed:', response);
+  }
+
+  const data = await response.json();
+
+  console.log('Received response:', data);
+
+  // Now data.message contains the AI response. You can display this in your HTML.
+  const chatLog = document.getElementById('chatLog');
+  chatLog.innerHTML += '<p><strong>AI:</strong> ' + data.message + '</p>';
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+}

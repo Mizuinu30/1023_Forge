@@ -12,7 +12,7 @@ header {
 }
 
 body {
-  background-image: url("/1023_Forge/frontend/images/highfantasy.webp");
+  background-image: url("/frontend/images/highfantasy.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
