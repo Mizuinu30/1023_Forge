@@ -1,18 +1,19 @@
 /* POPPINS FONT */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-*{  
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background: url("images/rafael-mogas-screenshot005.jpg");
+
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow: hidden;
+    background-image: url(login2.webp);
 }
 .wrapper{
     display: flex;
