@@ -4,11 +4,55 @@
 //Output: AI Dungeon Master response
 //Author: 1023_Forge (Hector J. Vazquez)
 //Date: 01/15/2024
-import { config } from "dotenv";
+//Modified: 03/06/2024 (Nadja)
+import { config as dotenvConfig } from 'dotenv';
+import express from 'express';
+import axios from 'axios';
 import readline from 'readline';
-import OpenAI from "openai";
+import OpenAI from 'openai';
+import cors from 'cors';
 
-config();
+// Load environment variables
+dotenvConfig();
+
+const app = express();
+// enable CORS for the frontend server, assuming it's running on localhost:
+app.use(cors());
+app.use(express.json()); // Middleware for parsing JSON bodies
+
+app.options('/message', cors()); // enable pre-flight request for POST request to /message
+
+app.post('/message', cors(), async (req, res) => {
+  console.log('Received a request at /message');
+
+  const userInput = req.body.message;
+  console.log('User input:', userInput);
+
+  try {
+    // Send user input to OpenAI and get response
+    console.log('OpenAI API Key:', process.env.OPENAI_API_KEY)
+    const openaiResponse = await axios.post('https://api.openai.com/v4/engines/davinci-codex/completions', {
+      prompt: userInput,
+      max_tokens: 60 // can be deleted or # can be adjusted
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      }
+
+    });
+
+    console.log('Received response from OpenAI:', openaiResponse.data);
+
+    // Send AI response back to frontend
+    res.json({ message: openaiResponse.data.choices[0].text });
+  } catch (error) {
+    console.error('An error occurred:', error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
+app.listen(3000, () => console.log('Server listening on port 3000'));
 
 // Set up OpenAI API
 const openai = new OpenAI({
@@ -22,14 +66,24 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+// Keywords and corresponding roles
+const keywords = {
+  'write': 'fantasy author',
+  'create': '5E format',
+  'story': 'storyteller',
+  'npc': 'character sheet'
+};
+
 // Setup chatbot conversation by providing a player name and an array of messages
 const askQuestion = (playerName, question, messages) => {
 // Ask user for input
     rl.question(question, async (message) => {
-// Exit if user types "exit"
-      if (message.toLowerCase() === 'exit') {
-        rl.close();
-        return;
+// Check for keywords in user input and modify role accordingly
+      let role = 'user';
+      for (let keyword in keywords) {
+        if (message.includes(keyword)) {
+          role = keywords[keyword];
+        }
       }
 
 // Add user message to messages array
@@ -37,6 +91,11 @@ const askQuestion = (playerName, question, messages) => {
         role: "user",
         content: message
       });
+// Exit if user types "exit"
+      if (message.toLowerCase() === 'exit') {
+        rl.close();
+        return;
+      }
 
 //wait for response from OpenAI
       await chat(playerName, messages);
@@ -56,6 +115,8 @@ const askQuestion = (playerName, question, messages) => {
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: messages,
+      }).catch(error => {
+        console.error('An error occured', error);
       });
 
 // Print response from OpenAI
