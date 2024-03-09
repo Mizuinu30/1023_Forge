@@ -1,0 +1,77 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: black;
+}
+
+#textBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh; /* Adjust this value as needed */
+}
+
+#textBox p {
+  text-align: center;
+  font-family: Z003;
+  font-size: 40px;
+  color: white;
+}
+
+.login-link {
+  font-family: Z003;
+  font-size: 80px;
+  color: white;
+}
+
+
+
+/* Parallax */
+#parallax-container {
+    height: 1040vh; /* set the height for all images */
+    overflow: hidden;
+    position: relative;
+}
+
+.parallax-image {
+    height: 100vh;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: contain;
+    transition: opacity 1s ease-in-out;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#image-1 {
+    background-image: url('./Images/forestpath1.webp');
+}
+
+#image-2 {
+    background-image: url('./Images/Alistair.webp');
+}
+
+#image-3 {
+    background-image: url('./Images/Galahad.webp');
+}
+
+#image-4 {
+    background-image: url('./Images/Rook.webp');
+}
+
+#image-5 {
+  background-image: url('./Images/Melody.webp');
+}
+
+#image-6 {
+    background-image: url('./Images/forestpath1_5.webp');
+}
+
+#image-7 {
+    background-image: url('./Images/Mirror.webp');
+}
+
+#image-8 {
+    background-image: url('./Images/forestpath2.webp');
+}
