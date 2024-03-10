@@ -1,0 +1,106 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: black;
+}
+
+#textBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh; /* Adjust this value as needed */
+}
+
+#textBox p {
+  text-align: center;
+  font-family: Z003;
+  font-size: 40px;
+  color: white;
+}
+
+#lastSection {
+  background-image: url('./Images/login2.webp');
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#lastParagraph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Z003;
+  font-size: 40px;
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.2); use in */
+  background-color: black;
+  height: 30vh;
+  margin: 0%;
+}
+
+.login-link {
+  font-family: Z003;
+  font-size: 120px;
+  color: white;
+  text-align: center;
+  margin: 9%;
+}
+
+/* Parallax */
+#parallax-container {
+    height: 1110vh; /* set the height for all images */
+    overflow: hidden;
+    position: relative;
+}
+
+.parallax-image {
+    height: 100vh;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: contain;
+    transition: opacity 1s ease-in-out;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#image-1 {
+    background-image: url('./Images/forestpath1.webp');
+}
+
+#image-2 {
+    background-image: url('./Images/Alistair.webp');
+}
+
+#image-3 {
+    background-image: url('./Images/Galahad.webp');
+}
+
+#image-4 {
+    background-image: url('./Images/Rook.webp');
+}
+
+#image-5 {
+  background-image: url('./Images/Melody.webp');
+}
+
+#image-6 {
+    background-image: url('./Images/forestpath1_5.webp');
+}
+
+#image-7 {
+    background-image: url('./Images/Mirror.webp');
+}
+
+#image-8 {
+    background-image: url('./Images/forestpath2.webp');
+}
+
+#image-9 {
+  background-image: url('./Images/login2.webp');
+}
