@@ -2,14 +2,14 @@
 
 // Import necessary modules
 
-//const mysql = require('mysql2/promise');
-import mysql from 'mysql2/promise';
-//const dotenv = require('dotenv');
-import dotenv from 'dotenv';
+const mysql = require('mysql2/promise');
+//import mysql from 'mysql2/promise';
+const dotenv = require('dotenv');
+//import dotenv from 'dotenv';
 //import logger from 'pino';
-//const logger = require('pino')();
-import pino from 'pino';
-const logger = pino();
+const logger = require('pino')();
+//import pino from 'pino';
+//const logger = pino();
 
 // Load environment variables
 dotenv.config();
