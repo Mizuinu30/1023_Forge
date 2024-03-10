@@ -119,10 +119,23 @@ body {
   margin: auto;
 }
 
+@keyframes sparkle {
+  0% {
+    color: #e10ee1;
+  }
+  50% {
+    color: rgb(29, 14, 130);
+  }
+  100% {
+    color: #ed05ce;
+  }
+}
+
 #chatLog pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   font-family: "Pixelify Sans", sans-serif;
+  animation: sparkle 3s;
 }
 
 #chatLog {
