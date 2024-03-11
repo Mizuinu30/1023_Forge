@@ -10,6 +10,7 @@ import OpenAI from "openai";
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import mysql from 'mysql';
 
 config();
 
@@ -18,6 +19,16 @@ const openai = new OpenAI({
     apiKey: process.env.OpenAI_API_KEY,
     organization: process.env.RoboBard,
 });
+
+// Function to create a connection to the MySQL server
+async function createConnection() {
+  return mysql.createConnection({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+  });
+}
 
 // Create an Express app
 const app = express();
