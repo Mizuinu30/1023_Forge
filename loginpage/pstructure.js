@@ -1,24 +1,13 @@
-document.addEventListener('scroll', () => {
-  const scrollPosition = window.scrollY;
+var wrapper = document.querySelector('.wrapper');
 
-  // Get all parallax images
-  const parallaxImages = document.querySelectorAll('.parallax-image');
+wrapper.addEventListener('scroll', function() {
+  var scrollPosition = wrapper.scrollTop;
 
-  // Loop through each parallax images
-  parallaxImages.forEach((image) => {
-    // Get the speed of the parallax effect for this image
-    const speed = image.dataset.speed;
+  var images = document.querySelectorAll('.wrapper > .background, .wrapper > .background1 , .wrapper > .background2 .wrapper > .background3, .wrapper > .background4, .wrapper > .background5, .wrapper > .background6, .wrapper > .background7');
 
-    // Calculate the offset based on the scroll position and the speed
-    const offset = scrollPosition * speed;
-
-    // Update the background position of the image
-    image.style.backgroundPosition = `center ${offset}px`;
-
-    // Calculate the opacity based on the scroll position
-    const opacity = 1 - scrollPosition / (document.body.scrollHeight - window.innerHeight);
-
-    // Update the opacity of the image
-    image.style.opacity = opacity;
+  images.forEach(function(image) {
+    var imageTop = image.offsetTop;
+    var newOpacity = Math.max(1 - (scrollPosition - imageTop) / 1000, 0);
+    image.style.opacity = newOpacity;
   });
 });
