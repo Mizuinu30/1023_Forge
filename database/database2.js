@@ -90,7 +90,6 @@ async function main() {
             user_id INT NOT NULL,
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
-            address VARCHAR(255),
             FOREIGN KEY (user_id) REFERENCES users(user_id)
         );
         `,
