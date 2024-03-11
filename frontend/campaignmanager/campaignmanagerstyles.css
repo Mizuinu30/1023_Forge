@@ -9,10 +9,13 @@ header {
   align-items: center;
   justify-content: center;
   border-bottom: 4px solid #6465a5; /* Lighter purple for border */
+  font-family: "UnifrakturMaguntia";
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
-  background-image: url("/frontend/images/highfantasy.webp");
+  background-image: url("/1023_Forge/frontend/images/highfantasy.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,9 +57,9 @@ body {
   background: #333; /* Example color */
   color: white;
   position: fixed;
-  bottom: 0;
+  bottom: 10%;
+  top: 20%;
   left: 0;
-  height: 85%;
   width: 20%; /* Width of the sidebar */
   overflow-y: auto;
   transition: transform 0.3s ease;
@@ -74,6 +77,38 @@ body {
   transition: transform 0.3s ease;
 }
 
+.dropdown-content {
+  display: none;
+  /* Other styles... */
+}
+
+.dropdown-content.visible {
+  display: block;
+  font-family: Z003;
+}
+
+#character-edit-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 10%;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  align-items: center;
+}
+
+#character-edit-form {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
 /* Main content */
 .main {
   display: flex;
@@ -84,12 +119,31 @@ body {
   margin: auto;
 }
 
+@keyframes sparkle {
+  0% {
+    color: #e10ee1;
+  }
+  50% {
+    color: rgb(29, 14, 130);
+  }
+  100% {
+    color: #ed05ce;
+  }
+}
+
+#chatLog pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: "Pixelify Sans", sans-serif;
+  animation: sparkle 3s;
+}
+
 #chatLog {
   width: 90%;
   height: 400px;
   border: 1px solid #ccc;
-  color: #ccc;
-  background-color: rgba(9, 6, 29, 0.368);
+  color: #ffffff;
+  background-color: rgba(9, 6, 29, 0.599);
   padding: 10px;
   overflow-y: auto;
   margin: 10px;

@@ -5,19 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D&D Campaign Manager</title>
     <link rel="stylesheet" href="campaignmanagerstyles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 </head>
 <body class="bg-black text-white">
 
-        <header class="flex justify-between items-center py-4 border-b">
-            <h1 id="campaignName" class="text-xl">Campaign Name</h1>
-            <div id="userSection" class="flex items-center">
-                <span id="userName">User Name</span>
-                <button id="homeButton" class="ml-4">Home</button>
-                <button id="loginButton" class="ml-4">Login</button>
-        </header>
-    </div>
+    <header class="flex justify-between items-center py-4 border-b">
+        <h1 id="campaignName" class="text-xl">Campaign Name</h1>
+        <div id="userSection" class="flex items-center">
+            <span id="userName">User Name</span>
+            <button id="homeButton" class="ml-4">Home</button>
+            <button id="loginButton" class="ml-4">Login</button>
+    </header>
+
     <div id="characterData" class="sidebarleft">
+        <h2>Character Data</h2>
         <!-- Character data goes here -->
+        <div class="character-field">
+            <div id="character-name">
+                <!-- Character data here... -->
+            </div>
+        </div>
+        <div class="panel">
+            <!-- Character data will be inserted here by JavaScript -->
+        </div>
     </div>
 
     <div class="main">
@@ -27,7 +39,51 @@
     </div>
 
     <div id="campaignInfo" class="sidebarright">
+        <h2>Campaign Info</h2>
         <!-- Campaign info goes here -->
+    </div>
+
+    <div id="character-edit-modal" style="display: none;">
+        <form id="character-edit-form" onsubmit="saveCharacterData(event)">
+            <label>
+                Player:
+                <input type="text" name="Player" placeholder="Player">
+            </label>
+            <label>
+                AC:
+                <input type="text" name="AC" placeholder="10 + DexMod + Armor">
+            </label>
+            <label>
+                Speed:
+                <input type="text" name="Speed" placeholder="30'">
+            <label>
+                HP:
+                <input type="text" name="HP" placeholder="Current HP/Total HP">
+            </label>
+            <label>
+                Level:
+                <input type="text" name="Level" placeholder="Any Class Levels you have">
+            </label>
+            <label>
+                Initiative:
+                <input type="text" name="Initiative" placeholder="+DexMod + Other Bonuses">
+            </label>
+            <label>
+                Conditions:
+                <input type="text" name="Conditions" placeholder="Conditions">
+            </label>
+            <label>
+                Save DC:
+                <input type="text" name="Save DC" placeholder="8 + Proficiency + Spellcasting Ability Modifier">
+            </label>
+            <label>
+                Passive Perception:
+                <input type="text" name="Passive Perception" placeholder="10 + WisdomMod + ProficiencyBonus if proficient in Perception">
+            </label>
+            <!-- Repeat for all other fields... -->
+            <button type="submit">Save</button>
+            <button id="exit-button">Exit</button>
+        </form>
     </div>
 
     <script src="campaignmanagerscript.js"></script>
