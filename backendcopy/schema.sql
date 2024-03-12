@@ -55,6 +55,18 @@ CREATE TABLE campaign_users (
     FOREIGN KEY (campaign_id) REFERENCES campaigns(id)
 );
 
+CREATE TABLE chatlogs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    campaign_id INT NOT NULL,
+    user_id VARCHAR(36) NOT NULL,
+    session_id INT NOT NULL,
+    message TEXT NOT NULL,
+    response TEXT NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
+    FOREIGN KEY (campaign_id) REFERENCES campaigns(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 -- Populate the database with some test data
 -- Insert a user
 INSERT INTO users (id, username, password, salt, email)  -- Include salt in INSERT statement
@@ -111,3 +123,10 @@ VALUES
 (@user_id1, @campaign_id2),
 (@user_id2, @campaign_id3),
 (@user_id1, @campaign_id3);
+
+-- Insert chatlogs for the campaign
+INSERT INTO chatlogs (campaign_id, user_id, session_id, message, response)
+VALUES
+(@campaign_id1, @user_id1, 0, 'Hello, world!', 'Welcome to 1023 FORGE. Select a campaign to start!'),
+(@campaign_id2, @user_id2, 0, 'Hello, world!', 'Welcome to 1023 FORGE. Select a campaign to start!'),
+(@campaign_id3, @user_id3, 0, 'Hello, world!', 'Welcome to 1023 FORGE. Select a campaign to start!');
