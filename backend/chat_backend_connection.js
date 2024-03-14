@@ -5,9 +5,11 @@
 // Author: 1023_Forge (Hector J. Vazquez)
 // Date: 01/15/2024
 import { config } from "dotenv";
+//require('dotenv').config();
 import readline from 'readline';
 import OpenAI from "openai";
 import express from 'express';
+//const cors = require('cors');
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mysql from 'mysql';
