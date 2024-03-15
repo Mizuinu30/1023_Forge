@@ -5,11 +5,9 @@
 // Author: 1023_Forge (Hector J. Vazquez)
 // Date: 01/15/2024
 import { config } from "dotenv";
-//require('dotenv').config();
 import readline from 'readline';
 import OpenAI from "openai";
 import express from 'express';
-//const cors = require('cors');
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mysql from 'mysql';
@@ -35,8 +33,10 @@ async function createConnection() {
 // Create an Express app
 const app = express();
 
-// Use CORS and body-parser middleware
+// Use CORS middleware
 app.use(cors());
+
+// Use bodyParser middleware to parse JSON bodies
 app.use(bodyParser.json());
 
 // Handle POST requests to /message
