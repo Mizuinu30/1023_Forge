@@ -1,106 +1,135 @@
-body, html {
-  height: 100%;
+body {
   margin: 0;
+  background-color: black;
+}
+
+.wrapper {
+  background-size: contain;
   overflow-x: hidden;
-  background-color: black;
-}
-
-#textBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30vh; /* Adjust this value as needed */
-}
-
-#textBox p {
-  text-align: center;
-  font-family: Z003;
-  font-size: 40px;
-  color: white;
-}
-
-#lastSection {
-  background-image: url('./Images/login2.webp');
-  background-attachment: fixed;
-  background-size: cover;
+  perspective: 8px; /* responsible for the 3D effect. lower number more effect...higher number less effect */
+  position: relative;
+  background-repeat: no-repeat;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
 }
 
-#lastParagraph {
+section {
+  font-size: 40px;
+  font-family: Z003;
+  padding: 2rem;
+  color: white;
+  background-color: #050303ab;
+}
+
+header {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  font-family: Z003;
-  font-size: 40px;
-  color: white;
-  /* background-color: rgba(0, 0, 0, 0.2); use in */
-  background-color: black;
-  height: 30vh;
-  margin: 0%;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
 }
 
-.login-link {
+.background {
+  background-image: url('Images/forestpath1.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-9px) scale(2); /*(moving along the Z-achis, scales the element, 1 = original size, -1 = shrink, +1 = bigger */
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.background1 {
+  background-image: url('Images/Alistair.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-2px) scale(1.2);
+  background-attachment: fixed;
+}
+
+.background2 {
+  background-image: url('Images/Galahad.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-2px) scale(1.2);
+  background-attachment: fixed;
+}
+
+.background3 {
+  background-image: url('Images/Rook.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-2px) scale(1.2);
+  background-attachment: fixed;
+}
+
+.background4 {
+  background-image: url('Images/Melody.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-2px) scale(1.2);
+  background-attachment: fixed;
+}
+
+.background5 {
+  background-image: url('Images/forestpath1_5.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-1px) scale(1.3);
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.background6 {
+  background-image: url('Images/Mirror.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-2px) scale(1.3);
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.background7 {
+  background-image: url('Images/forestpath2.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-3px) scale(1.3);
+  background-attachment: fixed;
+  height: 100%;
+}
+
+.background8 {
+  background-image: url('Images/login2.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateZ(-1px) scale(1.2);
+  background-attachment: fixed;
+  height: 100%;
+  z-index: -1;
+}
+
+
+.login-link a {
   font-family: Z003;
   font-size: 120px;
+  align-items: center;
+  background-size: cover;
   color: white;
-  text-align: center;
-  margin: 9%;
+  animation: sparkle 3s infinite;
+  background-color: #050303ab;
 }
 
-/* Parallax */
-#parallax-container {
-    height: 1110vh; /* set the height for all images */
-    overflow: hidden;
-    position: relative;
-}
-
-.parallax-image {
-    height: 100vh;
-    background-repeat: no-repeat;
-    position: relative;
-    background-size: contain;
-    transition: opacity 1s ease-in-out;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-#image-1 {
-    background-image: url('./Images/forestpath1.webp');
-}
-
-#image-2 {
-    background-image: url('./Images/Alistair.webp');
-}
-
-#image-3 {
-    background-image: url('./Images/Galahad.webp');
-}
-
-#image-4 {
-    background-image: url('./Images/Rook.webp');
-}
-
-#image-5 {
-  background-image: url('./Images/Melody.webp');
-}
-
-#image-6 {
-    background-image: url('./Images/forestpath1_5.webp');
-}
-
-#image-7 {
-    background-image: url('./Images/Mirror.webp');
-}
-
-#image-8 {
-    background-image: url('./Images/forestpath2.webp');
-}
-
-#image-9 {
-  background-image: url('./Images/login2.webp');
+@keyframes sparkle {
+  0% { color: #e10ee1; }
+  50% { color: rgb(29, 14, 130); }
+  100% { color: #ed05ce; }
 }

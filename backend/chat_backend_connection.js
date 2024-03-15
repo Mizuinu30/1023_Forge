@@ -5,11 +5,14 @@
 // Author: 1023_Forge (Hector J. Vazquez)
 // Date: 01/15/2024
 import { config } from "dotenv";
+//require('dotenv').config();
 import readline from 'readline';
 import OpenAI from "openai";
 import express from 'express';
+//const cors = require('cors');
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import mysql from 'mysql';
 
 config();
 
@@ -18,6 +21,16 @@ const openai = new OpenAI({
     apiKey: process.env.OpenAI_API_KEY,
     organization: process.env.RoboBard,
 });
+
+// Function to create a connection to the MySQL server
+async function createConnection() {
+  return mysql.createConnection({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+  });
+}
 
 // Create an Express app
 const app = express();
