@@ -9,7 +9,7 @@ body {
   display: flex;
 }
 
-.team-member-card{
+.team-member-card {
   display: none;
   border: 4px solid #ccc;
   margin-bottom: 20px; /* Space between cards */
@@ -49,7 +49,7 @@ body {
   margin-left: 30%;
 }
 
-.button-bar-Hector{
+.button-bar-Hector {
   display: flex;
   position: fixed;
   bottom: 0;
@@ -72,6 +72,87 @@ body {
   transition-duration: 0.4s;
 }
 
-#toggleButton:hover {
+#toggleButton-Alistair:hover {
+  background-color: #45a049;
+}
+
+.button-bar-Nadja{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 31%;
+  width: 100%;
+  padding: 10px;
+}
+
+#toggleButton-Melody {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+#toggleButton-Melody:hover {
+  background-color: #45a049;
+}
+
+.button-bar-Walter{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 20%;
+  width: 100%;
+  padding: 10px;
+}
+
+#toggleButton-Rook {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+#toggleButton-Rook:hover {
+  background-color: #45a049;
+}
+
+.button-bar-Juan {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 73%;
+  width: 100%;
+  padding: 10px;
+}
+
+#toggleButton-Galahad {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+#toggleButton-Galahad:hover {
   background-color: #45a049;
 }
