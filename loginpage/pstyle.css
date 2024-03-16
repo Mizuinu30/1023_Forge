@@ -31,7 +31,7 @@ header {
 }
 
 .background {
-  background-image: url('Images/forestpath1.webp');
+  background-image: url("Images/forestpath1.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -41,7 +41,7 @@ header {
 }
 
 .background1 {
-  background-image: url('Images/Alistair.webp');
+  background-image: url("Images/Alistair.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -50,7 +50,7 @@ header {
 }
 
 .background2 {
-  background-image: url('Images/Galahad.webp');
+  background-image: url("Images/Galahad.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -59,7 +59,7 @@ header {
 }
 
 .background3 {
-  background-image: url('Images/Rook.webp');
+  background-image: url("Images/Rook.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -68,7 +68,7 @@ header {
 }
 
 .background4 {
-  background-image: url('Images/Melody.webp');
+  background-image: url("Images/Melody.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -77,7 +77,7 @@ header {
 }
 
 .background5 {
-  background-image: url('Images/forestpath1_5.webp');
+  background-image: url("Images/forestpath1_5.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -87,7 +87,7 @@ header {
 }
 
 .background6 {
-  background-image: url('Images/Mirror.webp');
+  background-image: url("Images/Mirror.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -97,7 +97,7 @@ header {
 }
 
 .background7 {
-  background-image: url('Images/forestpath2.webp');
+  background-image: url("Images/forestpath2.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -107,7 +107,7 @@ header {
 }
 
 .background8 {
-  background-image: url('Images/login2.webp');
+  background-image: url("Images/login2.webp");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -117,7 +117,6 @@ header {
   z-index: -1;
 }
 
-
 .login-link a {
   font-family: Z003;
   font-size: 120px;
@@ -125,11 +124,18 @@ header {
   background-size: cover;
   color: white;
   animation: sparkle 3s infinite;
-  background-color: #050303ab;
+  background-color: #05030300;
+  text-shadow: white 0px 0px 10px;
 }
 
 @keyframes sparkle {
-  0% { color: #e10ee1; }
-  50% { color: rgb(29, 14, 130); }
-  100% { color: #ed05ce; }
+  0% {
+    color: #e10ee1;
+  }
+  50% {
+    color: rgb(89, 71, 206);
+  }
+  100% {
+    color: #ed05ce;
+  }
 }
