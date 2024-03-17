@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1023 Forge | Register</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/home/juansilva/my-registration-app/public/images/logo-1.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-box">
+            <div class="register-container" id="register">
+                <div class="top">
+                    <span>Have an account? <a href="/login">Login</a></span>
+                    <header>Register</header>
+                </div>
+                <form action="/register" method="POST">
+                    <div class="input-box">
+                        <input type="text" class="input-field" name="username" placeholder="Username" required>
+                        <i class="bx bx-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" class="input-field" name="email" placeholder="Email" required>
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" name="password" placeholder="Password" required>
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Register" id="registerSubmit">
+                    </div>
+                </form>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="register-check">
+                        <label for="register-check"> Remember Me</label>
+                    </div>
+                    <div class="two">
+                        <label><a href="#">Terms & conditions</a></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 20px;">
+        <a href="/login" style="text-decoration: none;">Already have an account? Login</a>
+    </div>
+</body>
+</html>
