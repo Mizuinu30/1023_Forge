@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const authRoutes = require('./routes/authRoutes'); // Assume you have this file setup as shown later
+const cors = require('cors');
 const app = express();
 const port = 3000;
 require('dotenv').config();
@@ -17,6 +18,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: { secure: false } // For HTTPS: set true
 }));
+
+app.use(cors());
 
 // Using auth routes
 app.use(authRoutes);
