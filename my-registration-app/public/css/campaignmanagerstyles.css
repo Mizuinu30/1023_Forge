@@ -144,18 +144,6 @@ body {
   border-radius: 5px;
 }
 
-.label {
-  position: absolute;
-  top: 0; /* Position the label at the top of .main */
-  left: 50%; /* Center align the label relative to .main */
-  transform: translateX(-50%); /* Center the label exactly */
-  background-color: #ff0000; /* Red background for visibility */
-  color: #ffffff; /* White text */
-  padding: 5px; /* Some padding around the text */
-  font-size: 12px; /* Example font size */
-  width: auto; /* Auto width based on content */
-}
-
 .a1-response {
   white-space: pre-wrap;
   word-wrap: break-word;
