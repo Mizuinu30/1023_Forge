@@ -11,7 +11,7 @@ router.post('/login', authController.postLogin);
 // Example route for handling logout logic
 router.get('/logout', authController.logout);
 router.get('/campaignmanager', authController.getCampaignManager);
-
+router.post('/message', authController.chatController);
 router.get('/aboutus', authController.getAboutUS);
 
 module.exports = router;

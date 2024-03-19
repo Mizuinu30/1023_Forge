@@ -162,7 +162,6 @@ document.getElementById('sendButton').addEventListener('click', async function()
 
   // Display user input
   chatLog.innerHTML += '<p><strong>User:</strong> ' + userInput + '</p>';
-  console.log('User input displayed', userInput);
 
   // Call the function to send the message to the server and display the AI response
   console.log('Before sendMessageToServer');
@@ -171,6 +170,7 @@ document.getElementById('sendButton').addEventListener('click', async function()
 });
 
 async function sendMessageToServer(userInput) {
+  var chatLog = document.getElementById('chatLog');
   console.log('sendMessageToServer called with:', userInput);
   try {
     console.log('About to send fetch request');
@@ -182,7 +182,6 @@ async function sendMessageToServer(userInput) {
     body: JSON.stringify({ message: userInput }),
   });
 
-  console.log('body:', body);
   console.log('Fetch request completed');
 
   if (!response.ok) {
