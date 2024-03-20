@@ -1,93 +1,118 @@
 const bcrypt = require('bcrypt');
-const pool = require('../db'); // Make sure you've set up this module to export your MySQL pool
+const pool = require('../db'); // Ensure this is your configured database pool
 const { v4: uuidv4 } = require('uuid');
 
+
+// Route handler to serve the start page
+exports.getpstart = (req, res) => {
+    res.render('pstart', { title: '1023_FORGE' });
+};
+
+// Route handler to serve the login page
 exports.getLogin = (req, res) => {
     res.render('login', { title: 'Login Page' });
 };
 
+// Route handler to serve the registration page
 exports.getRegister = (req, res) => {
     res.render('register', { title: 'Register Page' });
 };
 
-exports.postRegister = (req, res) => {
-    const { username, email, password } = req.body;
-    const salt = 10;
-    const userId = uuidv4(); // Generate a new UUID for the user
+// Route handler to serve the campaign manager page
+exports.getCampaignManager = async (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
 
-    bcrypt.hash(password, salt, (err, hash) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Server error');
-            return;
-        }
-
-        const query = 'INSERT INTO users (id, username, email, password, salt) VALUES (?, ?, ?, ?, ?)';
-
-        pool.query(query, [userId, username, email, hash, salt], (error, results, fields) => {
-            if (error) {
-                console.error(error);
-                res.status(500).send('Error registering new user');
-                return;
-            }
-            res.redirect('/login'); // Redirect to the login page after successful registration
+    try {
+        const userId = req.session.user.id;
+        const query = `
+            SELECT campaigns.id, campaigns.name, GROUP_CONCAT(characters.name SEPARATOR ', ') AS character_names
+            FROM campaigns
+            LEFT JOIN characters ON campaigns.id = characters.campaign_id
+            JOIN campaign_users ON campaigns.id = campaign_users.campaign_id
+            WHERE campaign_users.user_id = ?
+            GROUP BY campaigns.id, campaigns.name
+        `;
+        const [campaigns] = await pool.query(query, [userId]);
+        res.render('campaignmanager', {
+            title: 'Campaign Manager',
+            user: req.session.user,
+            campaigns: campaigns
         });
-    });
+    } catch (error) {
+        console.error('Error fetching campaigns:', error);
+        res.status(500).send('Server error');
+    }
 };
 
+// Route handler to serve the About Us page
+exports.getAboutUS = (req, res) => {
+    res.render('aboutus', { title: 'About Us' });
+};
 
-exports.postLogin = (req, res) => {
-    const { email, password } = req.body;
-
-    const query = 'SELECT * FROM users WHERE email = ?';
-
-    pool.query(query, [email], (error, results, fields) => {
-        if (error) {
-            console.error(error);
-            res.status(500).send('Server error');
-            return;
+// Implementation for user registration
+exports.postRegister = async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        if (!username || !email || !password) {
+            return res.status(400).send('Please provide username, email, and password.');
         }
+        const salt = await bcrypt.genSalt(10);
+        const userId = uuidv4();
+        const hash = await bcrypt.hash(password, salt);
+        const query = 'INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)';
+        await pool.query(query, [userId, username, email, hash]);
+        res.redirect('/login');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error registering new user');
+    }
+};
 
+// Implementation for user login
+exports.postLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).send('Please provide email and password.');
+        }
+        const query = 'SELECT * FROM users WHERE email = ?';
+        const [results] = await pool.query(query, [email]);
         if (results.length > 0) {
-            // Compare hashed password with the one stored in the database
-            bcrypt.compare(password, results[0].password, (err, result) => {
-                if (result) {
-                    // Passwords match
-                    req.session.user = { id: results[0].id, username: results[0].username }; // Set user session
-                    res.redirect('/profile'); // Redirect to the profile page or wherever you wish
-                } else {
-                    // Passwords don't match
-                    res.send('Login failed. Invalid email or password.');
-                }
-            });
+            const user = results[0];
+            const match = await bcrypt.compare(password, user.password);
+            if (match) {
+                req.session.user = { id: user.id, username: user.username };
+                res.redirect('/campaignmanager'); // Ensure you have a route handler for '/profile'
+            } else {
+                // Send a JSON response with a message
+                res.send({ message: 'Login failed. Invalid email or password.' });
+                console.log('it;s here 2');
+            }
         } else {
-            // No user found with that email
-            res.send('Login failed. Invalid email or password.');
+            res.send({ message: 'Login failed. Invalid email or password.' });
+            console.log('or here.');
         }
-    });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
 };
 
+
+// Route handler to log out the user
 exports.logout = (req, res) => {
     if (req.session) {
-        // delete session object
         req.session.destroy(err => {
             if (err) {
                 console.error(err);
                 res.status(500).send('Could not log out, please try again');
             } else {
-                // The `res.redirect` could be to the login screen or wherever you want the user to go after logout.
                 res.redirect('/login');
             }
         });
     }
 };
-exports.getProfile = (req, res) => {
-    if (!req.session.user) {
-        res.redirect('/login');
-    } else {
-        res.render('profile', {
-            title: 'Profile Page',
-            user: req.session.user
-        });
-    }
-};
+
+
