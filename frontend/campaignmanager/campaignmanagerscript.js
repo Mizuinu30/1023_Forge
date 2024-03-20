@@ -182,6 +182,7 @@ document.getElementById('sendButton').addEventListener('click', async function()
 });
 
 async function sendMessageToServer(userInput) {
+  var chatLog = document.getElementById('chatLog');
   console.log('sendMessageToServer called with:', userInput);
   try {
     console.log('About to send fetch request');
@@ -204,7 +205,6 @@ async function sendMessageToServer(userInput) {
   console.log('Received response:', data);
 
   // Now data.message contains the AI response. You can display this in your HTML.
-  const chatLog = document.getElementById('chatLog');
   chatLog.innerHTML += '<p><strong>AI:</strong><pre>' + data.message + '</pre></p>';
   } catch (error) {
     console.error('An error occurred:', error);

@@ -7,7 +7,6 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE,
-    salt VARCHAR(128) NOT NULL,
     created TIMESTAMP NOT NULL DEFAULT NOW()
 );
 -- Create the campaign tables for the database
@@ -33,6 +32,7 @@ CREATE TABLE characters (
     conditions VARCHAR(255),
     save_dc INT,
     passive_perception INT,
+    character_type ENUM('PC', 'NPC') NOT NULL DEFAULT 'PC',
     created TIMESTAMP NOT NULL DEFAULT NOW(),
     FOREIGN KEY (campaign_id) REFERENCES campaigns(id)
 );
@@ -69,17 +69,15 @@ CREATE TABLE chatlogs (
 
 -- Populate the database with some test data
 -- Insert a user
-INSERT INTO users (id, username, password, salt, email)  -- Include salt in INSERT statement
+-- Insert a user
+INSERT INTO users (id, username, password, email)
 VALUES
-(UUID(), 'username1', SHA2('password1', 256), (SHA2('some_salt1', 256)), 'email1@example.com'),
-(UUID(), 'username2', SHA2('password2', 256), (SHA2('some_salt2', 256)), 'email2@example.com'),
-(UUID(), 'username3', SHA2('password3', 256), (SHA2('some_salt3', 256)), 'email3@example.com');
+(UUID(), 'username1', SHA2('password1', 256), 'email1@example.com'),
+(UUID(), 'username2', SHA2('password2', 256), 'email2@example.com'),
+(UUID(), 'username3', SHA2('password3', 256), 'email3@example.com');
 
--- Get the salt for the user
-SET @salt = (SELECT salt FROM users WHERE username = 'username_to_check');
-
--- Combine the salt and the provided password, and hash the result
-SET @hashed_password = SHA2(CONCAT('password_to_check', @salt), 256);
+-- Check if the hashed password matches the stored hash
+SET @hashed_password = SHA2('password_to_check', 256);
 
 -- Check if the hashed password matches the stored hash
 SELECT * FROM users WHERE username = 'username_to_check' AND password = @hashed_password;
@@ -102,11 +100,11 @@ SET @campaign_id2 = (SELECT id FROM campaigns WHERE name = 'Campaign2');
 SET @campaign_id3 = (SELECT id FROM campaigns WHERE name = 'Campaign3');
 
 -- Insert a character for that campaign
-INSERT INTO characters (campaign_id, name, player, ac, speed, max_hp, current_hp, level, initiative, conditions, save_dc, passive_perception)
+INSERT INTO characters (campaign_id, name, player, ac, speed, max_hp, current_hp, level, initiative, conditions, save_dc, passive_perception, character_type)
 VALUES
-(@campaign_id1, 'Character1', 'Player1', 10, 30, 100, 100, 1, 1, 'None', 10, 10),
-(@campaign_id1, 'Character2', 'Player1', 15, 25, 50, 50, 1, 2, 'None', 15, 15),
-(@campaign_id2, 'Character3', 'Player3', 20, 20, 75, 75, 1, 3, 'None', 20, 20);
+(@campaign_id1, 'Character1', 'Player1', 10, 30, 100, 100, 1, 1, 'None', 10, 10, 'PC'),
+(@campaign_id1, 'Character2', 'Player1', 15, 25, 50, 50, 1, 2, 'None', 15, 15, 'PC'),
+(@campaign_id2, 'Character3', 'Player3', 20, 20, 75, 75, 1, 3, 'None', 20, 20, 'NPC');
 
 -- Insert a quest for that campaign
 INSERT INTO quests (campaign_id, name, story)

@@ -13,6 +13,7 @@ body {
   background-attachment: fixed;
   overflow: hidden;
   background-image: url("/Images/login2.webp");
+
 }
 
 .input-box .bx.bx-user {
@@ -119,7 +120,9 @@ body {
 }
 
 .form-box {
+
   background-color: #00000094;
+
   position: relative;
   display: flex;
   align-items: center;
@@ -136,6 +139,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: 0.5s ease-in-out;
+
   color: white;
 }
 
@@ -149,6 +153,7 @@ body {
 
 .input-box i {
   position: relative;
+
   top: 50%;
   left: 1rem;
   transform: translateY(-50%);

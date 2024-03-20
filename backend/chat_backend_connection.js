@@ -5,11 +5,9 @@
 // Author: 1023_Forge (Hector J. Vazquez)
 // Date: 01/15/2024
 import { config } from "dotenv";
-//require('dotenv').config();
 import readline from 'readline';
 import OpenAI from "openai";
 import express from 'express';
-//const cors = require('cors');
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mysql from 'mysql';
@@ -35,13 +33,36 @@ async function createConnection() {
 // Create an Express app
 const app = express();
 
-// Use CORS and body-parser middleware
+// Use CORS middleware
 app.use(cors());
+
+// Use bodyParser middleware to parse JSON bodies
 app.use(bodyParser.json());
+
+// Array of keywords and their added values
+const keywords = [
+  { keyword: 'create', addValue: ' as a Dungeon Master' },
+  { keyword: 'write', addValue: ' as a fantasy author' },
+  { keyword: 'describe', addValue: ' as a story teller' },
+  { keyword: 'story', addValue: ' as a fantasy story' },
+  { keyword: 'character', addValue: ' sheet' },
+  { keyword: 'NPC', addValue: ' sheet' },
+  { keyword: 'monster', addValue: ' sheet' },
+];
 
 // Handle POST requests to /message
 app.post('/message', async (req, res) => {
-  const userInput = req.body.message;
+  let userInput = req.body.message;
+
+   // Check for keywords and modify input
+   keywords.forEach(({ keyword, addValue }) => {
+    if (userInput.toLowerCase().includes(keyword.toLowerCase())) {
+      userInput += addValue;
+    }
+  });
+
+       // Add default value
+  userInput += ' in 5e format';
 
   // Add user message to messages array
   const messages = [{
@@ -49,8 +70,14 @@ app.post('/message', async (req, res) => {
     content: userInput
   }];
 
+  // Log the user input
+  console.log('Modified User input:\n', messages[0]);
+
   // Wait for response from OpenAI
   const response = await chat("Player", messages);
+
+  // Log the response
+  console.log('Response:\n', response);
 
   // Send response back to frontend
   res.json({ message: response });
