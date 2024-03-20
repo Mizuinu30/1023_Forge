@@ -1,32 +1,9 @@
 const bcrypt = require('bcrypt');
 const pool = require('../db'); // Make sure you've set up this module to export your MySQL pool
 const { v4: uuidv4 } = require('uuid');
-const OpenAI = require('openai-api');
-const readline = require('readline');
+const { OpenAI } = require("openai");
+const openai = new OpenAI(process.env.OPENAI_API_KEY);
 //const { logConversation } = require('../database');
-const openai = new OpenAI(process.env.OpenAI_API_KEY, process.env.RoboBard);
-
-// Setup chatbot conversation by providing a player name and an array of messages
-const askQuestion = (playerName, question, messages) => {
-    // Ask user for input
-        rl.question(question, async (message) => {
-    // Exit if user types "exit"
-          if (message.toLowerCase() === 'exit') {
-            rl.close();
-            return;
-          }
-
-// Array of keywords and their added values
-const keywords = [
-    { keyword: 'create', addValue: ' as a Dungeon Master' },
-    { keyword: 'write', addValue: ' as a fantasy author' },
-    { keyword: 'describe', addValue: ' as a story teller' },
-    { keyword: 'story', addValue: ' as a fantasy story' },
-    { keyword: 'character', addValue: ' sheet' },
-    { keyword: 'PC', addValue: ' character sheet' },
-    { keyword: 'NPC', addValue: ' character sheet' },
-    { keyword: 'monster', addValue: ' sheet' },
-  ];
 
 exports.getpstart = (req, res) => {
     res.render('pstart', { title: '1023_FORGE' });
@@ -126,51 +103,60 @@ exports.getCampaignManager = (req, res) => {
 // Chatbot controller
 exports.chatController = async (req, res) => {
     let userInput = req.body.message;
-    console.log('User input:', userInput);
+    console.log('Body received:', req.body);
 
 // Check if message is empty
     if (!userInput) {
         return res.status(400).send({ error: 'message is required' });
-      }
+      };
+
+let modifiedInput = userInput;
+
+// Array of keywords and their added values
+const keywords = [
+    { keyword: 'create', addValue: ' as a Dungeon Master' },
+    { keyword: 'write', addValue: ' as a fantasy author' },
+    { keyword: 'describe', addValue: ' as a story teller' },
+    { keyword: 'story', addValue: ' as a fantasy story' },
+    { keyword: 'character', addValue: ' sheet' },
+    { keyword: 'PC', addValue: ' character sheet' },
+    { keyword: 'NPC', addValue: ' character sheet' },
+    { keyword: 'monster', addValue: ' sheet' },
+  ];
 
 // Check for keywords and modify input
-  for (let i = 0; i < keywords.length; i++) {
-    if (userInput.includes(keywords[i].keyword)) {
-      // Only append addValue if it doesn't already exist in userInput
-      if (!userInput.includes(keywords[i].addValue)) {
-        userInput += keywords[i].addValue;
-      }
+keywords.forEach(({ keyword, addValue }) => {
+    if (userInput.includes(keyword) && !userInput.includes(addValue)) {
+        modifiedInput += addValue;
     }
-  }
+});
 
 // Add default value
-  userInput += ' in 5e format';
+  modifiedInput += ' in 5e format';
 
 // Log the user input
-  console.log('Modified User input:\n', messages[0]);
+  console.log('Modified User input:\n', modifiedInput);
 
   try {
     // Assuming using OpenAI's GPT-3
-    const gptResponse = await openai.createCompletion({
-        model: "gpt-3.5-turbo", // Use the appropriate model
-        prompt: userInput,
-        max_tokens: 100,
-        n: 1,
-        stop: null,
-        temperature: 0.5,
+    const gptResponse = await openai.chat.completions.create({
+        messages: [{ role: 'user', content: modifiedInput }],
+        model: 'gpt-3.5-turbo',
     });
 
-    const aiText = gptResponse.data.choices[0].text.trim();
-    console.log('AI response:', aiText);
+    // Immediately log the full response to inspect its structure
+    //console.log("Full API response:", JSON.stringify(gptResponse, null, 2));
+
+    // Print response from OpenAI
+    const assistantMessage = gptResponse.choices[0].message.content;
+    console.log('AI response:', assistantMessage);
 
     // Send response back to frontend
-    res.json({ message: aiText });
+    res.json({ message: assistantMessage });
 } catch (error) {
     console.error('Error communicating with OpenAI:', error);
     res.status(500).send({ error: 'Error processing chat request.' });
-}
-};
+}};
 
 exports.getAboutUS = (req, res) => {
-    res.render('aboutus', { title: 'About Us' });
-};
+    res.render('aboutus', { title: 'About Us' })};
