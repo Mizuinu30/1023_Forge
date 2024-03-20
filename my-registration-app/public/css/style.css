@@ -13,6 +13,32 @@ body {
   background-attachment: fixed;
   overflow: hidden;
   background-image: url("/Images/login2.webp");
+
+}
+
+.input-box .bx.bx-user {
+  position: absolute;
+  top: 35%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+.input-box .bx.bx-lock-alt {
+  position: absolute;
+  top: 59%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+.input-box .bx.bx-envelope {
+  position: absolute;
+  top: 47%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+.input-box .bx.bx-lock{
+  size: 20px;
+  margin: 10px;
 }
 
 .wrapper {
@@ -94,7 +120,9 @@ body {
 }
 
 .form-box {
-  background-color: #f700ff5b;
+
+  background-color: #00000094;
+
   position: relative;
   display: flex;
   align-items: center;
@@ -111,10 +139,21 @@ body {
   display: flex;
   flex-direction: column;
   transition: 0.5s ease-in-out;
+
+  color: white;
+}
+
+.login-container .top a {
+  color: white;
+}
+
+.register-container .top a {
+  color: white;
 }
 
 .input-box i {
-  position: absolute;
+  position: relative;
+
   top: 50%;
   left: 1rem;
   transform: translateY(-50%);
