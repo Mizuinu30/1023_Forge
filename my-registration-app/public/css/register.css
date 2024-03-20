@@ -1,0 +1,85 @@
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  background-image: url("../images/login2\ copy.webp");
+}
+
+.form-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  border: 5px solid #a2f6ff;
+  color: #ffffff;
+  background-color: rgba(0, 42, 91, 0.51);
+  padding: 10px;
+  padding-top: 20px;
+  overflow-y: auto;
+  margin-top: 25%; /* Adjusted to make space for the label */
+  border-radius: 5px;
+}
+
+.register-container .top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 0;
+}
+
+.register-container .top span  .top header {
+  color: #fff;
+  font-size: medium;
+  padding: 10px 10px;
+  display: flex;
+  margin: 0 10px;
+}
+
+.input-box .input-field {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  outline: 1px solid #80ccd4c9;
+  background-color: white;
+  color: #0c0101;
+  font-size: 25px;
+}
+
+.input-box .submit {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  background-color: rgb(147, 138, 138);
+  color: #0c0101;
+  font-size: 25px;
+  cursor: pointer;
+  transition: all .3s ease;
+  outline: 1px solid #80ccd4c9;
+}
+
+.two-col {
+  display: flex;
+  justify-content: space-between;
+}
+
+.one, .two {
+  flex: 1;
+}
+
+.login-page {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 10px 0;
+  display: flex;
+  margin: 0 10px;
+  align-items: center;
+}
