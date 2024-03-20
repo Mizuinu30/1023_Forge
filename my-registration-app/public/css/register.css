@@ -35,12 +35,25 @@ body {
   margin-top: 0;
 }
 
-.register-container .top span  .top header {
+.register-container .top span {
   color: #fff;
-  font-size: medium;
+  font-size: 25px;
   padding: 10px 10px;
   display: flex;
   margin: 0 10px;
+  animation: sparkle 3s infinite;
+}
+
+@keyframes sparkle {
+  0% {
+    color: #e10ee1;
+  }
+  50% {
+    color: rgb(89, 71, 206);
+  }
+  100% {
+    color: #ed05ce;
+}
 }
 
 .input-box .input-field {
