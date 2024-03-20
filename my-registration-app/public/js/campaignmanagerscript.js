@@ -174,28 +174,27 @@ async function sendMessageToServer(userInput) {
   console.log('sendMessageToServer called with:', userInput);
   try {
     console.log('About to send fetch request');
-    const requestBody = JSON.stringify({ message: userInput });
-    const response = await fetch('/api/chat', {
+    const response = await fetch('/message', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message: userInput }),
-    })
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ message: userInput }),
+  });
 
-    console.log('requestBody:', requestBody);
-    console.log('Fetch request completed');
+  console.log('body:', body);
+  console.log('Fetch request completed');
 
-    if (!response.ok) {
-      console.error('Fetch request failed:', response);
-    }
+  if (!response.ok) {
+    console.error('Fetch request failed:', response);
+  }
 
-    const data = await response.json();
+  const data = await response.json();
 
-    console.log('Received response:', data);
+  console.log('Received response:', data);
 
-    // Now data.message contains the AI response. You can display this in your HTML.
-    chatLog.innerHTML += '<p class="a1-response"><strong>AI: </strong>' + data.message + '</p>';
+  // Now data.message contains the AI response. You can display this in your HTML.
+  chatLog.innerHTML += '<p class="a1-response"><strong>AI: </strong>' + data.message + '</p>';
   } catch (error) {
     console.error('An error occurred:', error);
   }
