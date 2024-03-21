@@ -94,7 +94,8 @@ body {
 }
 
 .form-box {
-  background-color: #f700ff5b;
+  background-color: #00b3ff2f;
+  color: #fff;
   position: relative;
   display: flex;
   align-items: center;

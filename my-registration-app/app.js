@@ -10,6 +10,7 @@ require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(express.json()); // for parsing application/json
 
 // Session configuration
 app.use(session({
@@ -23,8 +24,6 @@ app.use(cors());
 
 // Using auth routes
 app.use(authRoutes);
-
-app.use(express.json()); // for parsing application/json
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));

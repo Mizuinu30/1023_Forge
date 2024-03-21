@@ -154,11 +154,15 @@ document.getElementById('sendButton').addEventListener('click', async function()
   var userInputField = document.getElementById('userInput');
   var userInput = userInputField.value;
 
+
   // clear the user input field
   userInputField.value = '';
 
   console.log('User input:', userInput);
   var chatLog = document.getElementById('chatLog');
+
+  // Scroll to the bottom of the chat log
+  chatLog.scrollTop = chatLog.scrollHeight;
 
   // Display user input
   chatLog.innerHTML += '<p><strong>User:</strong> ' + userInput + '</p>';
@@ -174,27 +178,28 @@ async function sendMessageToServer(userInput) {
   console.log('sendMessageToServer called with:', userInput);
   try {
     console.log('About to send fetch request');
-    const response = await fetch('/message', {
+    const requestBody = JSON.stringify({ message: userInput });
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ message: userInput }),
-  });
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: userInput }),
+    })
 
-  console.log('body:', body);
-  console.log('Fetch request completed');
+    console.log('requestBody:', requestBody);
+    console.log('Fetch request completed');
 
-  if (!response.ok) {
-    console.error('Fetch request failed:', response);
-  }
+    if (!response.ok) {
+      console.error('Fetch request failed:', response);
+    }
 
-  const data = await response.json();
+    const data = await response.json();
 
-  console.log('Received response:', data);
+    console.log('Received response:', data);
 
-  // Now data.message contains the AI response. You can display this in your HTML.
-  chatLog.innerHTML += '<p class="a1-response"><strong>AI: </strong>' + data.message + '</p>';
+    // Now data.message contains the AI response. You can display this in your HTML.
+    chatLog.innerHTML += '<p class="a1-response"><strong>4one: </strong>' + data.message + '</p>';
   } catch (error) {
     console.error('An error occurred:', error);
   }

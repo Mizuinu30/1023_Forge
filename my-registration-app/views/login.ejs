@@ -2,63 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
-    <title>1023 Forge | Login & Registration</title>
-    <script src="/js/login"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Login</title>
 </head>
 <body>
-    <nav class="nav">
-        <div class="nav-logo">
-            <p>LOGO .</p>
-        </div>
-        <div class="nav-menu" id="navMenu">
-            <ul>
-                <li><a href="#" class="link active">Home</a></li>
-                <li><a href="#" class="link">Blog</a></li>
-                <li><a href="#" class="link">Services</a></li>
-                <li><a href="./Aboutus.html" class="link">About us</a></li>
-            </ul>
-        </div>
-        <div class="nav-button">
-            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
-            <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
-        </div>
-        <div class="nav-menu-btn">
-            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-        </div>
-    </nav>
-
-<!----------------------------- Form box ----------------------------------->
-    <div class="form-box">
-
-        <!------------------- login form -------------------------->
-
-        <div class="login-container" id="login">
-            <div class="top">
-                <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
-                <header>Login</header>
-            </div>
-            <div class="input-box">
-                <input type="text" class="input-field" placeholder="Username or Email">
-                <i class="bx bx-user"></i>
-            </div>
-            <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password">
-                <i class="bx bx-lock-alt"></i>
-            </div>
-            <div class="input-box">
-                <input type="submit" class="submit" value="Sign In">
-            </div>
-            <div class="two-col">
-                <div class="one">
-                    <input type="checkbox" id="login-check">
-                    <label for="login-check"> Remember Me</label>
+    <div class="wrapper">
+        <div class="form-box">
+            <div class="login-container" id="login">
+                <div class="top">
+                    <span>Don't have an account? <a href="/register">Sign Up</a></span>
+                    <header>Login</header>
                 </div>
-                <div class="two">
-                    <label><a href="#">Forgot password?</a></label>
-                </div>
+                <form action="/login" method="POST">
+                    <div class="input-box">
+                        <input type="email" id="email" name="email" class="input-field" placeholder="Email" required>
+                        <i class="bx bx-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" id="password" name="password" class="input-field" placeholder="Password" required>
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Sign In" id="loginSubmit">
+                    </div>
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox" id="login-check">
+                            <label for="login-check"> Remember Me</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="/forgot-password">Forgot password?</a></label>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
